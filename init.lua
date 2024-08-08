@@ -324,14 +324,29 @@ require('lazy').setup({
     end,
   },
 
-  { -- Tmux plugin
+  { -- Tmux
     'christoomey/vim-tmux-navigator',
   },
 
-  { -- Git diff sign column plygin
+  { -- Git diff sign column
     'airblade/vim-gitgutter',
     config = function()
       vim.g.gitgutter_sign_priority = 0
+    end,
+  },
+
+  { -- Vim surround
+    'tpope/vim-surround',
+    dependencies = {
+      'tpope/vim-repeat',
+    },
+  },
+
+  { -- Tailwind
+    'luckasRanarison/tailwind-tools.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = function()
+      vim.keymap.set('n', '<leader>ts', ':TailwindSort<CR>', { desc = '[T]ailwind [S]ort' })
     end,
   },
 
@@ -876,6 +891,9 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      { 'windwp/nvim-ts-autotag', opts = {} },
+    },
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
