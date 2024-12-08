@@ -353,14 +353,6 @@ require('lazy').setup({
     },
   },
 
-  { -- Tailwind
-    'luckasRanarison/tailwind-tools.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    opts = function()
-      vim.keymap.set('n', '<leader>ts', ':TailwindSort<CR>', { desc = '[T]ailwind [S]ort' })
-    end,
-  },
-
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
@@ -473,6 +465,29 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+    end,
+  },
+
+  { -- Tailwind
+    'luckasRanarison/tailwind-tools.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = function()
+      vim.keymap.set('n', '<leader>ts', ':TailwindSort<CR>', { desc = '[T]ailwind [S]ort' })
+    end,
+  },
+
+  { -- Neoclip
+    'AckslD/nvim-neoclip.lua',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('neoclip').setup {
+        on_select = {
+          move_to_front = true,
+        },
+        on_paste = {
+          move_to_front = true,
+        },
+      }
     end,
   },
 
