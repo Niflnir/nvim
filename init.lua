@@ -213,6 +213,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.cmd 'autocmd  FileType cpp lua CppShortcuts()'
+function CppShortcuts()
+  local opts = { noremap = true, silent = true }
+  local keymap = vim.api.nvim_set_keymap
+  vim.opt.mp = 'g++ -O2 -Wall --std=c++17 -Wno-unused-result %:r.cpp -o %:r'
+  keymap('n', '<leader>2', '<cmd>vs %:r.in<CR>', opts)
+  keymap('n', '<leader>3', '<cmd>!time ./%:r < %:r.in <CR>', opts)
+  keymap('n', '<leader>4', '<cmd>w<CR><cmd>make<CR>', opts)
+  keymap('n', '<leader>5', '<cmd>w<CR><cmd>make<CR><cmd>!time ./%:r < %:r.in<CR>', opts)
+end
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
