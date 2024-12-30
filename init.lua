@@ -326,6 +326,14 @@ require('lazy').setup({
     end,
   },
 
+  { -- icons
+    'echasnovski/mini.icons',
+    config = function()
+      require('mini.icons').setup()
+      MiniIcons.mock_nvim_web_devicons()
+    end,
+  },
+
   { -- Catpuccin colour theme
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -499,9 +507,7 @@ require('lazy').setup({
 
   {
     'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
+    dependencies = { 'echasnovski/mini.icons' },
     opts = {
       winopts = {
         preview = {
