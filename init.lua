@@ -331,6 +331,12 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function()
+      require('catppuccin').setup {
+        integrations = {
+          fzf = true,
+          gitsigns = true,
+        },
+      }
       vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
@@ -489,6 +495,20 @@ require('lazy').setup({
         },
       }
     end,
+  },
+
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "echasnovski/mini.icons" },
+    opts = {
+      winopts = {
+        preview = {
+          layout = 'vertical',
+        },
+      },
+    },
   },
 
   { -- LSP Configuration & Plugins
